@@ -356,6 +356,26 @@ defmodule TwMergeTest do
       assert merge(["inline", "block", "inline-1"]) == "block inline-1"
       assert merge(["inline", "block", "i-inline"]) == "block i-inline"
       assert merge(["focus:inline", "focus:block", "focus:inline-1"]) == "focus:block focus:inline-1"
+
+      # @nrser  I haven't traced down _why_, but this was raising an error:
+      #
+      #     1) test non-tailwind does not alter non-tailwind classes (TwMergeTest)
+      #        test/tw_merge_test.exs:354
+      #        ** (Protocol.UndefinedError) protocol Enumerable not implemented for nil of type Atom. This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Jason.OrderedObject, List, Map, MapSet, Range, Stream
+      #        code: assert merge(["normal-caps"]) == "normal-caps"
+      #        stacktrace:
+      #          (elixir 1.17.3) lib/enum.ex:1: Enumerable.impl_for!/1
+      #          (elixir 1.17.3) lib/enum.ex:166: Enumerable.reduce/3
+      #          (elixir 1.17.3) lib/enum.ex:412: Enum.any?/1
+      #          (tw_merge 0.1.1) lib/tw_merge/class.ex:52: TwMerge.Class.group_recursive/2
+      #          (tw_merge 0.1.1) lib/tw_merge/class.ex:38: TwMerge.Class.group/1
+      #          (tw_merge 0.1.1) lib/tw_merge/class.ex:9: TwMerge.Class.parse/1
+      #          (elixir 1.17.3) lib/enum.ex:1703: Enum."-map/2-lists^map/1-1-"/2
+      #          (tw_merge 0.1.1) lib/tw_merge.ex:108: TwMerge.do_merge/2
+      #          (tw_merge 0.1.1) lib/tw_merge.ex:95: TwMerge.retrieve_from_cache_or_merge/2
+      #          test/tw_merge_test.exs:359: (test)
+      #
+      assert merge(["normal-caps"]) == "normal-caps"
     end
   end
 
