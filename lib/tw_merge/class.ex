@@ -45,7 +45,10 @@ defmodule TwMerge.Class do
     if next = Map.get(map["next"], part) do
       group_recursive(rest, next)
     else
-      if Enum.any?(map["validators"]) do
+      # @nrser  In the case of a custom utility class `map["validators"]` may be
+      #         `nil`, resulting in an exception from `Enum.any?/1`, so an
+      #         additional `is_map/1` check was added.
+      if is_map(map["validators"]) && Enum.any?(map["validators"]) do
         path = Enum.join(path, "-")
 
         case Enum.find(sort_validators(map["validators"]), fn {_key, %{"function" => validator}} -> validator.(path) end) do
