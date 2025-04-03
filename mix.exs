@@ -34,7 +34,7 @@ defmodule TwMerge.MixProject do
     [
       maintainers: ["Dung Nguyen"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/bluzky/tw_merge"},
+      links: %{"GitHub" => "https://github.com/nrser/tw_merge"},
       files: ~w(lib .formatter.exs mix.exs README*)
     ]
   end
