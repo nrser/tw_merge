@@ -4,13 +4,13 @@ defmodule TwMerge.MixProject do
   def project do
     [
       app: :tw_merge,
-      version: "0.1.1",
+      version: "0.1.1-nrser.1",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       name: "TwMerge",
       description: description(),
-      source_url: "https://github.com/bluzky/tw_merge",
+      source_url: "https://github.com/nrser/tw_merge",
       docs: docs(),
       package: package(),
       test_coverage: [tool: ExCoveralls],
