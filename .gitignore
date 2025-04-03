@@ -24,3 +24,6 @@ tw_merge-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Ignore Nix directory for `mix` stuffs
+/.nix-mix/
